@@ -1,0 +1,36 @@
+{
+  "general": {
+    "package": "jackett",
+    "name": "Jackett",
+    "version": "APKG_VERSION",
+    "depends": ["mono"],
+    "conflicts": [],
+    "developer": "Jackett",
+    "maintainer": "mafredri",
+    "email": "mafredri+adm@gmail.com",
+    "website": "https://jackett.net/",
+    "architecture": "ADM_ARCH",
+    "firmware": "2.4.0"
+  },
+  "adm-desktop": {
+    "app": {
+      "port": 9117,
+      "protocol": "http",
+      "type": "custom",
+      "url": "/"
+    },
+    "privilege": {
+      "accessible": "administrators",
+      "customizable": true
+    }
+  },
+  "register": {
+    "boot-priority": {
+      "stop-order": 80,
+      "start-order": 20
+    },
+    "port": [
+      9117
+    ]
+  }
+}
