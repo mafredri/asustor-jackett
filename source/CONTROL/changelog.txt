@@ -1,4 +1,6 @@
-0.6.9-r1:
+0.6.9-r2:
+- Fix symlinking of config
+- Fix assigning of PID to Jackett
 - Repackage Jackett.Binaries.Mono.v0.6.9.tar.bz2, there was a problem extracting it on the NAS
 
 0.6.9:

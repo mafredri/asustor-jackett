@@ -13,7 +13,7 @@ start_daemon() {
     # Set umask to create files with world r/w
     umask 0
 
-    start-stop-daemon -S --background --quiet --chuid "${CHUID}" --user "${USER}" --exec "$DAEMON" -- "$JACKETT" /data="$PKG_CONF"
+    start-stop-daemon -S --background --quiet --chuid "${CHUID}" --user "${USER}" --exec "$DAEMON" --pidfile "${PID}" --make-pidfile -- "$JACKETT" /data="$PKG_CONF"
 }
 
 stop_daemon() {
