@@ -1,2 +1,8 @@
+0.6.9-r1:
+- Repackage Jackett.Binaries.Mono.v0.6.9.tar.bz2, there was a problem extracting it on the NAS
+
+0.6.9:
+- Verison bump
+
 0.6.8:
 - Initial release on Asustor

@@ -17,9 +17,10 @@ case "${APKG_PKG_STATUS}" in
         rsync -ra "$PKG_CONF/" "$APKG_TEMP_DIR/config/"
 
         # Back up application
-        if [ -d "$PKG_DIR/Jackett" ]; then
-            cp -af "$PKG_DIR/Jackett" "$APKG_TEMP_DIR/"
-        fi
+        # Not required at this moment
+        # if [ -d "$PKG_DIR/Jackett" ]; then
+        #     cp -af "$PKG_DIR/Jackett" "$APKG_TEMP_DIR/"
+        # fi
         ;;
     *)
         ;;

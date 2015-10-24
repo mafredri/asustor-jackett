@@ -39,11 +39,12 @@ case "${APKG_PKG_STATUS}" in
         rsync -ra "$APKG_TEMP_DIR/config/" "$PKG_CONF/"
 
         # Restore application or extract included version
-        if [ -d "$APKG_TEMP_DIR/Jackett" ]; then
-            cp -af "$APKG_TEMP_DIR/Jackett" "$PKG_DIR/"
-        else
-            install_jackett
-        fi
+        # if [ -d "$APKG_TEMP_DIR/Jackett" ]; then
+        #     cp -af "$APKG_TEMP_DIR/Jackett" "$PKG_DIR/"
+        # else
+        #     install_jackett
+        # fi
+        install_jackett
         ;;
     *)
         ;;
