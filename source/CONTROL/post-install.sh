@@ -10,7 +10,7 @@ fi
 . "${PKG_DIR}/CONTROL/env.sh"
 
 install_jackett() {
-    tar xjf "$PKG_DIR"/.release/*.tar.bz2 -C "$PKG_DIR/"
+    tar xzf "$PKG_DIR"/.release/*.tar.gz -C "$PKG_DIR/"
 
     # Make sure .config exists
     parent_dir="$(dirname "$PKG_CONF_SYM")"

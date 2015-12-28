@@ -1,3 +1,7 @@
+0.7.75:
+- Switch to https://github.com/Jackett/Jackett which is a maintained fork of the original Jackett
+- Update to the latest version
+
 0.6.9-r2:
 - Fix symlinking of config
 - Fix assigning of PID to Jackett

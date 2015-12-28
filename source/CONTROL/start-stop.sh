@@ -8,7 +8,6 @@ CHUID=${DAEMON_USER}
 DAEMON="mono"
 JACKETT="${PKG_PATH}/Jackett/JackettConsole.exe"
 
-
 start_daemon() {
     # Set umask to create files with world r/w
     umask 0

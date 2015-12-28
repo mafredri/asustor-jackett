@@ -32,11 +32,11 @@ for arch in "${ADM_ARCH[@]}"; do
 
     # Check package versions
     packages=$(<packages.txt)
-    echo "# This file is auto-generated." > "pkgversions_$arch.txt"
-    for package in $packages; do
-        version=$(ssh ${HOST} "EIX_PREFIX=${cross} ${EIX} ${package}")
-        echo "$version" >> "pkgversions_$arch.txt"
-    done
+    #echo "# This file is auto-generated." > "pkgversions_$arch.txt"
+    #for package in $packages; do
+    #    version=$(ssh ${HOST} "EIX_PREFIX=${cross} ${EIX} ${package}")
+    #    echo "$version" >> "pkgversions_$arch.txt"
+    #done
 
     WORK_DIR=build/$arch
     if [ ! -d "$WORK_DIR" ]; then
