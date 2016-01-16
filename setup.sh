@@ -24,6 +24,10 @@ if [[ ! -d dist ]]; then
     mkdir dist
 fi
 
+if [[ -d build ]]; then
+    rm -rf build
+fi
+
 for arch in "${ADM_ARCH[@]}"; do
     cross=${arch#*:}
     arch=${arch%:*}

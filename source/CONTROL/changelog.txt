@@ -1,3 +1,8 @@
+0.7.121:
+- Add a jacket-daemon script to make sure Jackett is started if it has crashed
+- Update Jackett to the latest version
+- Since the last update, Jackett supports auto-updates
+
 0.7.75:
 - Switch to https://github.com/Jackett/Jackett which is a maintained fork of the original Jackett
 - Update to the latest version

@@ -1,0 +1,53 @@
+#!/bin/sh
+
+. /usr/local/AppCentral/jackett/CONTROL/env.sh
+
+JACKETT="${PKG_PATH}/Jackett/JackettConsole.exe"
+PATTERN="[Jj]ackett[Cc]onsole.exe"
+TIMEOUT=1
+PID=${PKG_CONF}/${PKG_PID}
+
+echo $$ > "$PID"
+
+stop_pid() {
+	echo "Stopping Jackett (${pid})..."
+	kill "$pid"
+
+	count=0
+	while pgrep -f "$PATTERN" >/dev/null; do
+		count=$(( count + 1 ))
+		if [ $count -gt 5 ]; then
+			kill -9 "$pid"
+			break
+		fi
+		sleep 1
+	done
+}
+
+stop_jackett() {
+	pid="$(pgrep -f "$PATTERN")"
+	if [ -z "$pid" ]; then
+		exit 0
+	fi
+
+	for p in $pid; do
+		stop_pid "$p"
+	done
+
+	rm "$PID"
+
+	exit 0
+}
+
+trap stop_jackett TERM INT EXIT
+
+while true; do
+	if ! pgrep -f "$PATTERN" >/dev/null; then
+		echo "Starting Jackett!"
+		mono --debug "$JACKETT" /data="$PKG_CONF" &
+	fi
+
+	wait
+
+	sleep $TIMEOUT
+done

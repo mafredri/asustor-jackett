@@ -45,6 +45,15 @@ case "${APKG_PKG_STATUS}" in
         #     install_jackett
         # fi
         install_jackett
+
+		# Compatibility
+		# Make sure any old processes are stopped
+		pid="$(pgrep -f "[Jj]ackett[Cc]onsole.exe")"
+		if [ -n "$pid" ]; then
+			for p in $pid; do
+				kill "$p"
+			done
+		fi
         ;;
     *)
         ;;

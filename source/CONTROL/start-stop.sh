@@ -3,16 +3,11 @@
 . /usr/local/AppCentral/jackett/CONTROL/env.sh
 
 PID=${PKG_CONF}/${PKG_PID}
-CHUID=${DAEMON_USER}
-# Shadow mono, see bin/mono
-DAEMON="mono"
-JACKETT="${PKG_PATH}/Jackett/JackettConsole.exe"
+CHUID="$DAEMON_USER"
+DAEMON="${PKG_PATH}/bin/jackett-daemon"
 
 start_daemon() {
-    # Set umask to create files with world r/w
-    umask 0
-
-    start-stop-daemon -S --background --quiet --chuid "${CHUID}" --user "${USER}" --exec "$DAEMON" --pidfile "${PID}" --make-pidfile -- "$JACKETT" /data="$PKG_CONF"
+    start-stop-daemon -S --background --quiet --chuid "${CHUID}" --user "${USER}" --pidfile "${PID}" --make-pidfile --exec "$DAEMON"
 }
 
 stop_daemon() {
