@@ -39,7 +39,7 @@ stop_jackett() {
 	exit 0
 }
 
-trap stop_jackett TERM INT EXIT
+trap stop_jackett TERM INT
 
 while true; do
 	if ! pgrep -f "$PATTERN" >/dev/null; then
