@@ -1,3 +1,7 @@
+0.7.164:
+- Update bundled Jackett
+- Do not trap the exit signal in the Jackett keepalive daemon
+
 0.7.121:
 - Add a jacket-daemon script to make sure Jackett is started if it has crashed
 - Update Jackett to the latest version
