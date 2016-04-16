@@ -12,6 +12,11 @@ fi
 install_jackett() {
     tar xzf "$PKG_DIR"/.release/*.tar.gz -C "$PKG_DIR/"
 
+    # Make sure configuration directory exists
+    if [ ! -d "$PKG_CONF" ]; then
+        mkdir "$PKG_CONF"
+    fi
+
     # Make sure .config exists
     parent_dir="$(dirname "$PKG_CONF_SYM")"
     if [ ! -d "$parent_dir" ]; then

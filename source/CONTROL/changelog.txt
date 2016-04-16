@@ -1,3 +1,7 @@
+0.7.219:
+- Update bundled Jackett
+- Fix creation of missing config directory causing Jackett not being able to start
+
 0.7.164:
 - Update bundled Jackett
 - Do not trap the exit signal in the Jackett keepalive daemon
