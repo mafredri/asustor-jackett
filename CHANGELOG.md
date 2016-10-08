@@ -1,3 +1,12 @@
+0.7.411:
+* WARNING! This update is incompatible with the previous releases, you will likely lose your configuration
+* Update bundled Jackett to 0.7.411
+* Simplify `jacket-daemon` and `start-stop-daemon`
+* Backup and restore the installed Jackett version (from now on)
+* Backup and restore Jackett configuration
+* Keep configuration inside the Jackett package (`/usr/local/AppCentral/jackett`)
+* Keep mono keypairs backed up so that they retain compatibility with the Jackett configuration
+
 0.7.219:
 * Update bundled Jackett
 * Fix creation of missing config directory causing Jackett not being able to start

@@ -1,53 +1,44 @@
 #!/bin/sh
 
+# jacket-daemon keeps the Jackett process alive by restarting it if it has
+# crashed.
+
 . /usr/local/AppCentral/jackett/CONTROL/env.sh
 
 JACKETT="${PKG_PATH}/Jackett/JackettConsole.exe"
-PATTERN="[Jj]ackett[Cc]onsole.exe"
 TIMEOUT=1
-PID=${PKG_CONF}/${PKG_PID}
 
-echo $$ > "$PID"
-
-stop_pid() {
-	echo "Stopping Jackett (${pid})..."
-	kill "$pid"
-
-	count=0
-	while pgrep -f "$PATTERN" >/dev/null; do
-		count=$(( count + 1 ))
-		if [ $count -gt 5 ]; then
-			kill -9 "$pid"
-			break
-		fi
-		sleep 1
-	done
-}
-
-stop_jackett() {
-	pid="$(pgrep -f "$PATTERN")"
-	if [ -z "$pid" ]; then
-		exit 0
-	fi
-
-	for p in $pid; do
-		stop_pid "$p"
-	done
-
-	rm "$PID"
-
+cleanup() {
+	# When this script is interrupted, We make sure Jackett also gets the
+	# message to quit.
+	pkill -f "${PROC_PATTERN}"
 	exit 0
 }
 
-trap stop_jackett TERM INT
+trap cleanup SIGINT SIGTERM
 
+# Relaunch Jackett every time it crashes.
 while true; do
-	if ! pgrep -f "$PATTERN" >/dev/null; then
-		echo "Starting Jackett!"
-		mono --debug "$JACKETT" /data="$PKG_CONF" &
+	# We set HOME to `$PKG_PATH`` because mono creates:
+	# $HOME/.config/.mono/keypairs/*.xml
+	#
+	# The keypairs are used for encrypting and decrypting the Jackett
+	# configuration. We want to be able to backup these keypairs, otherwise the
+	# Jackett config might be invalidated if the keypairs are ever lost or
+	# touched by some other application.
+	HOME="${PKG_PATH}" mono --debug "${JACKETT}" -d "${PKG_CONF}" &
+
+	# Wait for Jackett to quit or crash.
+	wait $!
+
+	# Check the return status, if it exited gracefully we stop launching it.
+	RET=$?
+	if [ $RET -eq 0 ]; then
+		exit 0
+	else
+		echo "Jackett crashed with exit code ${RET}. Respawning..." >&2
 	fi
 
-	wait
-
+	# Prevent bombing the system if Jackett constantly crashes.
 	sleep $TIMEOUT
 done

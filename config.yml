@@ -3,8 +3,8 @@ ssh: ascross
 
 package: jackett
 name: Jackett
-version: 2.0.0.4326
-architecture: ""
+version: 0.7.411
+architecture: any
 firmware: 2.6.0
 
 config:
