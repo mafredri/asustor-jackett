@@ -6,13 +6,13 @@ else
 	PKG_DIR=$APKG_PKG_DIR
 fi
 
-# Source env variables
-. "${PKG_DIR}/CONTROL/env.sh"
-
 case "${APKG_PKG_STATUS}" in
 	install)
 		;;
 	upgrade)
+		# Source env variables
+		. "${PKG_DIR}/CONTROL/env.sh"
+
 		# Back up configuration
 		rsync -ra "$PKG_CONF/" "$APKG_TEMP_DIR/config/"
 

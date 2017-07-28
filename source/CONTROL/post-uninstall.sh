@@ -6,7 +6,4 @@ else
 	PKG_DIR=$APKG_PKG_DIR
 fi
 
-# Source env variables
-. "${PKG_DIR}/CONTROL/env.sh"
-
 exit 0
