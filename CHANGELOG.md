@@ -1,3 +1,7 @@
+0.7.1609:
+* Update for ADM 3.0
+* Update bundled Jackett to 0.7.1609
+
 0.7.411:
 * WARNING! This update is incompatible with the previous releases, you will likely lose your configuration
 * Update bundled Jackett to 0.7.411
